@@ -169,12 +169,20 @@ class prm_map:
 		for e in self.edges:
 			drawn_map.stroke(pyx.path.line(e.pt1.x,e.pt1.y,e.pt2.x,e.pt2.y))
 			
+		distance = 0
 		for i in range(len(self.s_path)-1):
 			drawn_map.stroke(pyx.path.line(self.s_path[i][0],self.s_path[i][1],self.s_path[i+1][0],self.s_path[i+1][1]), [pyx.color.rgb.green, pyx.style.linewidth(.1)])
+			distance += dist(pt(self.s_path[i][0],self.s_path[i][1]), pt(self.s_path[i+1][0],self.s_path[i+1][1]))
 			
+		print "shortest path distance: " + str(distance)
+
+		distance = 0
 		for i in range(len(self.p_path)-1):
 			drawn_map.stroke(pyx.path.line(self.p_path[i][0],self.p_path[i][1],self.p_path[i+1][0],self.p_path[i+1][1]), [pyx.color.rgb.blue, pyx.style.linewidth(.1)])
-		
+			distance += dist(pt(self.p_path[i][0],self.p_path[i][1]), pt(self.p_path[i+1][0],self.p_path[i+1][1]))
+			
+		print "probabilistic path distance: " + str(distance)
+			
 			
 		drawn_map.fill(pyx.path.circle(1, 1,.15), [pyx.color.rgb.blue])
 		drawn_map.fill(pyx.path.circle(19,19,.15), [pyx.color.rgb.blue])
